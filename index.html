@@ -410,7 +410,7 @@ header{
 .modal-spec:last-child{border-left:none}
 .modal-spec-v{display:none}
 .modal-spec-l{font-size:9px;color:var(--text-light);letter-spacing:0.06em}
-.tags-lbl{font-size:10px;color:var(--text-light);font-weight:600;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px}
+.tags-lbl{font-size:10px;color:#7ecfea;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px}
 .tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px}
 .tag{background:rgba(4,17,30,.80);border:1px solid rgba(255,255,255,.10);font-size:10px;padding:4px 10px;border-radius:100px;color:var(--text-mid)}
 .modal-btns{display:flex;gap:10px;margin-top:2px}
@@ -766,7 +766,11 @@ function sendOrderWhatsapp(){
 <!-- MAIN APP -->
 <div id="app">
   <header>
-    <button class="back-btn" onclick="goBack()">❯ رجوع</button>
+    <button class="back-btn" onclick="goBack()">
+      <svg width="9" height="15" viewBox="0 0 9 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1.5 1.5L7.5 7.5L1.5 13.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
     <div class="header-center" id="headerTitle"></div>
   </header>
 
@@ -887,8 +891,7 @@ function showSection(type){
   const st=document.getElementById('sectionTitle');
   st.innerHTML='اختر القسم المناسب لك';
   st.style.cssText='font-size:20px!important;font-weight:700;color:#fff;line-height:1.25;margin:0;font-family:Tajawal,sans-serif;';
-  document.getElementById('sectionDesc').textContent='صممت لتناسب مختلف المناسبات';
-  document.getElementById('sectionDesc').style.cssText='font-size:13px;color:rgba(255,255,255,.60);margin-top:6px;font-family:Tajawal,sans-serif;';
+  document.getElementById('sectionDesc').textContent='';
   setActiveTab('chalet');
   renderChalet();
 }
@@ -912,7 +915,7 @@ function renderChalet(){
         ${(function(){var gl=GALLERY[c.id]||[];if(gl.length<=1)return '';return '<button class=\"card-slide-btn card-slide-prev\" onclick=\"event.stopPropagation();cardSlide(this.closest(\'.card-img-wrap\'),-1)\">&#10095;</button><button class=\"card-slide-btn card-slide-next\" onclick=\"event.stopPropagation();cardSlide(this.closest(\'.card-img-wrap\'),1)\">&#10094;</button><div style=\"position:absolute;bottom:10px;left:12px;background:rgba(19,53,72,0.55);color:#fff;font-family:Tajawal,sans-serif;font-size:11px;border-radius:12px;padding:3px 9px;z-index:2;\" class=\"card-counter\">1 / '+gl.length+'</div>';})()}
       </div>
       <div class="card-body">
-        <div class="card-name">${c.name}</div>
+        <div class="card-name" style="display:flex;align-items:center;justify-content:space-between;">${c.name}<span style="color:#19a7b7;font-size:18px;flex-shrink:0;">←</span></div>
         <div class="card-specs">
 
           <div class="card-spec">${c.suitable&&c.suitable.includes('عرسان')?'للعرسان':'للتجمعات الكبيرة'}</div>
@@ -956,9 +959,9 @@ function openMDirect(c){
       const outdoor=groups.slice(4);
       const chaletTips={'مسبح الكبار 5×9 م':'عمق متدرج من 1 م إلى 2.15 م','مسبح الأطفال 3×7 م':'عمق 65 سم'};
       const rg=g=>g.map(t=>chaletTips[t]?'<span class="tag" data-tip="'+chaletTips[t]+'">'+t+'</span>':'<span class="tag">'+t+'</span>').join('')+'<div style="width:100%;height:0;margin:4px 0"></div>';
-      return '<div class="tags-lbl">المنطقة الداخلية</div><div class="tags">'+indoor.map(rg).join('')+'</div>'
-        +'<div class="tags-lbl" style="margin-top:6px;">المنطقة الخارجية</div><div class="tags">'+outdoor.map(rg).join('')+'</div>'
-        +'<div class="tags-lbl" style="margin-top:6px;">مرافق المطبخ</div><div class="tags" style="margin-bottom:8px;"><span class="tag">موقد كهربائي</span><span class="tag">ثلاجة</span><span class="tag">مايكرويف</span><span class="tag">غلاية كهربائية</span></div>'
+      return '<div class="tags-lbl" style="color:#7ecfea;">المنطقة الداخلية</div><div class="tags">'+indoor.map(rg).join('')+'</div>'
+        +'<div class="tags-lbl" style="color:#7ecfea;margin-top:6px;">المنطقة الخارجية</div><div class="tags">'+outdoor.map(rg).join('')+'</div>'
+        +'<div class="tags-lbl" style="color:#7ecfea;margin-top:6px;">مرافق المطبخ</div><div class="tags" style="margin-bottom:8px;"><span class="tag">موقد كهربائي</span><span class="tag">ثلاجة</span><span class="tag">مايكرويف</span><span class="tag">غلاية كهربائية</span></div>'
         +'<div class="tags-lbl" style="margin-top:6px;">مميزات الاستراحة</div><div class="tags" style="margin-bottom:8px;"><span class="tag">شاشة تلفزيون</span><span class="tag">سماعات داخلية (ساوند بار)</span></div>'
         +'<div class="tags-lbl" style="margin-top:6px;">الخدمات الإضافية</div><div class="tags" style="margin-bottom:8px;"><span class="tag">زحليقة</span><span class="tag">ملعب صابوني</span></div>';
     })() : (()=>{
@@ -994,9 +997,9 @@ function openMDirect(c){
       const tipMap={'بانيو داخلي':'ضمن غرفة النوم','بانيو خارجي':'بانيو خارجي بخصوصية كاملة','بانيو داخلي مع جاكوزي':'ضمن غرفة النوم الرئيسية','ميني بار':'سناكس ومشروبات متنوعة بأسعار رمزية'};
       const rt=t=>{if(t.includes('::')){const[d,tip]=t.split('::');return '<span class="tag" data-tip="'+tip+'">'+d+'</span>';}const tip=tipMap[t];return tip?'<span class="tag" data-tip="'+tip+'">'+t+'</span>':'<span class="tag">'+t+'</span>';};
       const rg=g=>g.map(rt).join('')+'<div style="width:100%;height:0;margin:4px 0"></div>';
-      return '<div class="tags-lbl">المنطقة الداخلية</div><div class="tags">'+indoor.map(rg).join('')+'</div>'
-        +'<div class="tags-lbl" style="margin-top:6px;">المنطقة الخارجية</div><div class="tags">'+outdoor.map(rg).join('')+'</div>'
-        +'<div class="tags-lbl" style="margin-top:6px;">مرافق المطبخ</div><div class="tags" style="margin-bottom:16px;"><span class="tag">موقد كهربائي</span><span class="tag">ثلاجة</span><span class="tag">مايكرويف</span><span class="tag">غلاية</span><span class="tag">ماكينة قهوة</span></div>'
+      return '<div class="tags-lbl" style="color:#7ecfea;">المنطقة الداخلية</div><div class="tags">'+indoor.map(rg).join('')+'</div>'
+        +'<div class="tags-lbl" style="color:#7ecfea;margin-top:6px;">المنطقة الخارجية</div><div class="tags">'+outdoor.map(rg).join('')+'</div>'
+        +'<div class="tags-lbl" style="color:#7ecfea;margin-top:6px;">مرافق المطبخ</div><div class="tags" style="margin-bottom:16px;"><span class="tag">موقد كهربائي</span><span class="tag">ثلاجة</span><span class="tag">مايكرويف</span><span class="tag">غلاية</span><span class="tag">ماكينة قهوة</span></div>'
         +'<div class="tags-lbl" style="margin-top:6px;">مميزات الاستراحة</div><div class="tags" style="margin-bottom:16px;"><span class="tag">واي فاي مجاني</span><span class="tag">تلفزيون</span><span class="tag">سماعات داخلية (ساوند بار)</span><span class="tag" data-tip="متاح يومياً من 1 ظهراً حتى 12 منتصف الليل">مطعم وجبات سريعة</span><span class="tag">موقف سيارة</span><span class="tag" data-tip="متاح حسب التوفر">غرفة سائق</span></div>';
     })()}
 

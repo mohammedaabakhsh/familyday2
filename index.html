@@ -244,11 +244,13 @@ header{
   height:60px;position:sticky;top:0;z-index:100
 }
 .back-btn{
-  display:flex;align-items:center;gap:6px;
-  background:none;border:none;color:var(--text-mid);
-  font-family:'Tajawal',sans-serif;font-size:13px;font-weight:500;
-  cursor:pointer;padding:6px 10px;border-radius:6px;transition:all 0.2s
+  display:flex;align-items:center;justify-content:center;
+  background:none;border:none;color:rgba(255,255,255,.70);
+  cursor:pointer;padding:0;width:38px;height:38px;border-radius:50%;
+  transition:background 0.2s,color 0.2s;flex-shrink:0;
+  -webkit-tap-highlight-color:transparent;
 }
+
 .back-btn:hover{background:rgba(4,17,30,.80);color:#fff}
 .header-center{font-size:15px;font-weight:700;color:#fff}
 .header-center span{color:var(--teal)}
@@ -915,7 +917,7 @@ function renderChalet(){
         ${(function(){var gl=GALLERY[c.id]||[];if(gl.length<=1)return '';return '<button class=\"card-slide-btn card-slide-prev\" onclick=\"event.stopPropagation();cardSlide(this.closest(\'.card-img-wrap\'),-1)\">&#10095;</button><button class=\"card-slide-btn card-slide-next\" onclick=\"event.stopPropagation();cardSlide(this.closest(\'.card-img-wrap\'),1)\">&#10094;</button><div style=\"position:absolute;bottom:10px;left:12px;background:rgba(19,53,72,0.55);color:#fff;font-family:Tajawal,sans-serif;font-size:11px;border-radius:12px;padding:3px 9px;z-index:2;\" class=\"card-counter\">1 / '+gl.length+'</div>';})()}
       </div>
       <div class="card-body">
-        <div class="card-name" style="display:flex;align-items:center;justify-content:space-between;">${c.name}<span style="color:#19a7b7;font-size:18px;flex-shrink:0;">←</span></div>
+        <div class="card-name">${c.name}</div>
         <div class="card-specs">
 
           <div class="card-spec">${c.suitable&&c.suitable.includes('عرسان')?'للعرسان':'للتجمعات الكبيرة'}</div>
@@ -962,8 +964,8 @@ function openMDirect(c){
       return '<div class="tags-lbl" style="color:#7ecfea;">المنطقة الداخلية</div><div class="tags">'+indoor.map(rg).join('')+'</div>'
         +'<div class="tags-lbl" style="color:#7ecfea;margin-top:6px;">المنطقة الخارجية</div><div class="tags">'+outdoor.map(rg).join('')+'</div>'
         +'<div class="tags-lbl" style="color:#7ecfea;margin-top:6px;">مرافق المطبخ</div><div class="tags" style="margin-bottom:8px;"><span class="tag">موقد كهربائي</span><span class="tag">ثلاجة</span><span class="tag">مايكرويف</span><span class="tag">غلاية كهربائية</span></div>'
-        +'<div class="tags-lbl" style="margin-top:6px;">مميزات الاستراحة</div><div class="tags" style="margin-bottom:8px;"><span class="tag">شاشة تلفزيون</span><span class="tag">سماعات داخلية (ساوند بار)</span></div>'
-        +'<div class="tags-lbl" style="margin-top:6px;">الخدمات الإضافية</div><div class="tags" style="margin-bottom:8px;"><span class="tag">زحليقة</span><span class="tag">ملعب صابوني</span></div>';
+        +'<div class="tags-lbl" style="color:#7ecfea;margin-top:6px;">مميزات الاستراحة</div><div class="tags" style="margin-bottom:8px;"><span class="tag">شاشة تلفزيون</span><span class="tag">سماعات داخلية (ساوند بار)</span></div>'
+        +'<div class="tags-lbl" style="color:#7ecfea;margin-top:6px;">الخدمات الإضافية</div><div class="tags" style="margin-bottom:8px;"><span class="tag">زحليقة</span><span class="tag">ملعب صابوني</span></div>';
     })() : (()=>{
       const bathTxt=c.bathroom===1?'حمام واحد':c.bathroom===2?'2 دورات مياه':c.bathroom>2?c.bathroom+' حمامات':'';
       const line2=[];
@@ -1000,7 +1002,7 @@ function openMDirect(c){
       return '<div class="tags-lbl" style="color:#7ecfea;">المنطقة الداخلية</div><div class="tags">'+indoor.map(rg).join('')+'</div>'
         +'<div class="tags-lbl" style="color:#7ecfea;margin-top:6px;">المنطقة الخارجية</div><div class="tags">'+outdoor.map(rg).join('')+'</div>'
         +'<div class="tags-lbl" style="color:#7ecfea;margin-top:6px;">مرافق المطبخ</div><div class="tags" style="margin-bottom:16px;"><span class="tag">موقد كهربائي</span><span class="tag">ثلاجة</span><span class="tag">مايكرويف</span><span class="tag">غلاية</span><span class="tag">ماكينة قهوة</span></div>'
-        +'<div class="tags-lbl" style="margin-top:6px;">مميزات الاستراحة</div><div class="tags" style="margin-bottom:16px;"><span class="tag">واي فاي مجاني</span><span class="tag">تلفزيون</span><span class="tag">سماعات داخلية (ساوند بار)</span><span class="tag" data-tip="متاح يومياً من 1 ظهراً حتى 12 منتصف الليل">مطعم وجبات سريعة</span><span class="tag">موقف سيارة</span><span class="tag" data-tip="متاح حسب التوفر">غرفة سائق</span></div>';
+        +'<div class="tags-lbl" style="color:#7ecfea;margin-top:6px;">مميزات الاستراحة</div><div class="tags" style="margin-bottom:16px;"><span class="tag">واي فاي مجاني</span><span class="tag">تلفزيون</span><span class="tag">سماعات داخلية (ساوند بار)</span><span class="tag" data-tip="متاح يومياً من 1 ظهراً حتى 12 منتصف الليل">مطعم وجبات سريعة</span><span class="tag">موقف سيارة</span><span class="tag" data-tip="متاح حسب التوفر">غرفة سائق</span></div>';
     })()}
 
     <div class="modal-btns">
@@ -1008,7 +1010,7 @@ function openMDirect(c){
       <a href="https://wa.me/966556156693" target="_blank" class="mbtn mbtn-wa">تواصل واتساب</a>
     </div>
         `;
-  document.querySelectorAll('#mBody .tags-lbl').forEach(el=>{el.style.color='#133548';el.style.marginTop='24px';});
+  document.querySelectorAll('#mBody .tags-lbl').forEach(el=>{el.style.color='#7ecfea';el.style.marginTop='24px';});
   document.querySelectorAll('#mBody .tags').forEach(el=>{el.style.marginBottom='12px';});
   document.querySelectorAll('#mBody .tags div[style*="margin:4px"]').forEach(el=>el.remove());
   const cr=document.querySelector('#mBody div[style*="margin-bottom:20px"]');if(cr)cr.style.marginBottom='12px';

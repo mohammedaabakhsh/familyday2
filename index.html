@@ -843,7 +843,7 @@ function setActiveTab(tab){
   document.querySelectorAll('.bnav-btn').forEach(function(b){b.classList.remove('active');});
   var el = document.getElementById('bnav-'+tab);
   if(el) el.classList.add('active');
-  document.getElementById('bottomNav').style.display='flex';
+  document.getElementById('bottomNav').style.display='none';
 }
 
 function bottomNav(tab){

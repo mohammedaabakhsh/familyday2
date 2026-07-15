@@ -506,8 +506,8 @@ header{
   transition:background 0.15s;
 }
 .modal-back-btn{
-  background:rgba(4,17,30,.80);border:1px solid rgba(255,255,255,.10);
-  color:var(--text-mid);font-family:'Tajawal',sans-serif;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+  color:rgba(255,255,255,.70);font-family:'Tajawal',sans-serif;
   font-size:12px;font-weight:600;cursor:pointer;
   padding:5px 12px;border-radius:100px;
   transition:background 0.15s;
@@ -917,15 +917,14 @@ function renderChalet(){
         ${(function(){var gl=GALLERY[c.id]||[];if(gl.length<=1)return '';return '<button class=\"card-slide-btn card-slide-prev\" onclick=\"event.stopPropagation();cardSlide(this.closest(\'.card-img-wrap\'),-1)\">&#10095;</button><button class=\"card-slide-btn card-slide-next\" onclick=\"event.stopPropagation();cardSlide(this.closest(\'.card-img-wrap\'),1)\">&#10094;</button><div style=\"position:absolute;bottom:10px;left:12px;background:rgba(19,53,72,0.55);color:#fff;font-family:Tajawal,sans-serif;font-size:11px;border-radius:12px;padding:3px 9px;z-index:2;\" class=\"card-counter\">1 / '+gl.length+'</div>';})()}
       </div>
       <div class="card-body">
-        <div class="card-name">${c.name}</div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;direction:rtl;flex-wrap:wrap;">
+          <div class="card-name" style="margin-bottom:0;">${c.name}</div>
+          ${(function(){var gl=GALLERY[c.id]||[];if(gl.length<=1)return '';return '<div style="display:flex;gap:5px;"><button onclick="event.stopPropagation();cardSlide(this.closest('.card').querySelector('.card-img-wrap'),-1)" style="width:26px;height:26px;border-radius:50%;background:rgba(25,167,183,0.15);border:1px solid rgba(25,167,183,0.35);color:#7ecfea;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;">❯</button><button onclick="event.stopPropagation();cardSlide(this.closest('.card').querySelector('.card-img-wrap'),1)" style="width:26px;height:26px;border-radius:50%;background:rgba(25,167,183,0.15);border:1px solid rgba(25,167,183,0.35);color:#7ecfea;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;">❮</button></div>';})()}
+        </div>
         <div class="card-specs">
-
-          <div class="card-spec">${c.suitable&&c.suitable.includes('عرسان')?'للعرسان':'للتجمعات الكبيرة'}</div>
+          <div class="card-spec">${c.guests > 10 ? c.guests + ' شخصًا' : c.guests === 2 ? 'شخصان' : c.guests + ' أشخاص'}</div>
           <div class="card-spec">${c.rooms===1?'غرفة نوم واحدة':'غرفتين نوم'}</div>
           ${(()=>{const b=c.tags&&c.tags.find(t=>t.includes('بانيو')||t.includes('جاكوزي'));return b?'<div class="card-spec">'+b+'</div>':''})()}
-        </div>
-        <div class="card-guests">
-          <span class="card-guests-max" style="color:#7ecfea;">السعة: ${c.guests > 10 ? c.guests + ' شخصًا' : c.guests === 2 ? 'شخصان' : c.guests + ' أشخاص'}</span>
         </div>
         <button class="card-btn">عرض التفاصيل</button>
       </div>`;

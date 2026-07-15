@@ -922,9 +922,9 @@ function renderChalet(){
           ${(function(){var gl=GALLERY[c.id]||[];if(gl.length<=1)return '';return '<div style="display:flex;gap:5px;"><button onclick="event.stopPropagation();cardSlide(this.closest(\'.card\').querySelector(\'.card-img-wrap\'),-1)" style="width:26px;height:26px;border-radius:50%;background:rgba(25,167,183,0.15);border:1px solid rgba(25,167,183,0.35);color:#7ecfea;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;">&#10095;</button><button onclick="event.stopPropagation();cardSlide(this.closest(\'.card\').querySelector(\'.card-img-wrap\'),1)" style="width:26px;height:26px;border-radius:50%;background:rgba(25,167,183,0.15);border:1px solid rgba(25,167,183,0.35);color:#7ecfea;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;">&#10094;</button></div>';})()}
         </div>
         <div class="card-specs">
-          <div class="card-spec">${c.guests > 10 ? c.guests + ' شخصًا' : c.guests === 2 ? 'شخصان' : c.guests + ' أشخاص'}</div>
+          <div class="card-spec">${c.suitable||'مناسب للتجمعات الكبيرة'}</div>
+          <div class="card-spec">تستوعب ${c.guests} شخصًا</div>
           <div class="card-spec">${c.rooms===1?'غرفة نوم واحدة':'غرفتين نوم'}</div>
-          ${(()=>{const b=c.tags&&c.tags.find(t=>t.includes('بانيو')||t.includes('جاكوزي'));return b?'<div class="card-spec">'+b+'</div>':''})()}
         </div>
         <button class="card-btn">عرض التفاصيل</button>
       </div>`;

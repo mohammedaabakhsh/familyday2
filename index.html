@@ -923,8 +923,10 @@ function renderChalet(){
         </div>
         <div class="card-specs">
           <div class="card-spec">${c.suitable||'مناسب للتجمعات الكبيرة'}</div>
-          <div class="card-spec">تستوعب ${c.guests} شخصًا</div>
           <div class="card-spec">${c.rooms===1?'غرفة نوم واحدة':'غرفتين نوم'}</div>
+        </div>
+        <div class="card-guests">
+          <span class="card-guests-max" style="color:#7ecfea;">السعة: تستوعب ${c.guests} شخصًا</span>
         </div>
         <button class="card-btn">عرض التفاصيل</button>
       </div>`;
